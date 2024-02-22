@@ -1,0 +1,11 @@
+def main():
+    name = input("write your name: ")
+    for i in name:
+        if i.isdigit():
+            raise ValueError("The name must not contain numbers!")
+    age = input("Укажите свой возраст: ")
+    for i in age:
+        if i.isdigit() is not True:
+            raise ValueError("age must consist of numbers!")
+if __name__ == '__main__':
+    main()
