@@ -1,0 +1,40 @@
+import random
+
+class Character:
+    def __init__(self, name, attributes):
+        self.name = name
+        self.attributes = attributes
+
+def akinator(characters):
+    print("Давай сыграем в Akinator! Я попробую угадать персонажа, о котором ты думаешь.")
+    print("Отвечай 'да' или 'нет' на мои вопросы.")
+
+    guessed = False
+
+    while not guessed:
+        question = random.choice(list(characters[0].attributes.keys()))
+        print("Вопрос:", question + "?")
+        answer = input().lower()
+
+        if answer == "да":
+            characters = [char for char in characters if char.attributes[question] == "да"]
+        elif answer == "нет":
+            characters = [char for char in characters if char.attributes[question] == "нет"]
+        else:
+            print("Некорректный ответ. Попробуй еще раз.")
+
+        if len(characters) == 1:
+            print("Ура! Я угадал! Это", characters[0].name)
+            guessed = True
+        elif len(characters) == 0:
+            print("Кажется, я не могу угадать персонажа. Возможно, ты ошибся?")
+            guessed = True
+
+if __name__ == "__main__":
+    characters = [
+        Character("Марио", {"герой": "да", "профессия": "сантехник", "цвет": "красный", "особенность": "прыгает высоко"}),
+        Character("Соник", {"герой": "да", "профессия": "ерунда", "цвет": "синий", "особенность": "быстрый как ветер"}),
+        Character("Лара Крофт", {"герой": "да", "профессия": "археолог", "цвет": "светлокожая", "особенность": "ловкая и смелая"}),
+    ]
+
+    akinator(characters)
